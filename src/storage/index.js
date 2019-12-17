@@ -6,3 +6,5 @@ Vue.use(Storage, {
     prefix: 'todo_list_',// default `app_`
     drivers: 'local', // default 'local'
   });
+
+//   export default new Storage;
