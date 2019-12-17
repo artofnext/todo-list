@@ -1,8 +1,29 @@
 <template>
   <div id="app">
-   
+   <message :msg="msg" />
+   <TodoForm />
   </div>
 </template>
+
+<script>
+
+import Message from "@/components/Message";
+import TodoForm from "@/components/Form";
+
+export default {
+  name: "App",
+  data() {
+    return {
+      msg: "App message1",
+    }
+  },
+  components: {
+    Message,
+    TodoForm,
+  },
+   
+};
+</script>
 
 <style lang="scss">
 #app {
