@@ -2,8 +2,8 @@
     <div class="form-container">
         <form class="todo-form" name="todo">
             <!-- <h2>{{ todo }}</h2> -->
-            <input v-model="todo" v-on:input="checkInput()" type="text" placeholder="Type toto here...">
-            <button v-show="showAddButton" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
+            <input v-model="todo" type="text" placeholder="Type toto here...">
+            <button :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
         </form>
             <div>
                 <h3  v-if="todoArray.length > 0">You have to do:</h3>
@@ -16,7 +16,7 @@
                     </transition-group>
             </div>
         <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
-        <h2 v-else-if="todoArray.length == 0">You have nothing to do!</h2>
+        <h2 v-else>You have nothing to do!</h2>
     </div>
 </template>
 
@@ -27,8 +27,6 @@ export default {
     name: 'Form',
     data() {
         return {
-            key: 0,
-            showAddButton: false,
             todo: "",
             todoArray: [],
         }
@@ -39,13 +37,7 @@ export default {
     methods: {
         setTodo: function(todo) {
             this.todoArray.push(todo);
-            this.showAddButton = false;
             this.todo = "";
-        },
-        checkInput: function() {
-            if (this.todo != "") {
-                this.showAddButton = true;
-            }
         },
         removeTodo: function(key) {
 
@@ -53,13 +45,12 @@ export default {
 
             setTimeout(function () { // for purpose to pass param to callback function
                 removeElem(key);
-                }, 500);
+                }, 50);
 
             function removeElem (key) {
                 self.todoArray.splice(key, 1);
             }
         }
-        
     },
     watch: {
         todoArray() {
@@ -70,11 +61,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $color-list-background: #eee;
+    $color-list-background: #ddd;
 
     ol {
         margin: 0 auto;
         max-width: 500px;
+        width: 100%;
         text-align: left;
         font-size: 20px;
         line-height: 30px;
@@ -84,7 +76,7 @@ export default {
         }
         
         .even {
-            background-color: lighten( $color-list-background, 20%);
+            background-color: lighten( $color-list-background, 10%);
         }
 
         .list-item {
