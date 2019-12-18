@@ -14,7 +14,7 @@ export default {
   name: "App",
   data() {
     return {
-      msg: "App message1",
+      msg: "Simple ToDo list",
     }
   },
   components: {

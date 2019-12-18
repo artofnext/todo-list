@@ -2,8 +2,8 @@
     <div class="form-container">
         <form class="todo-form" name="todo">
             <!-- <h2>{{ todo }}</h2> -->
-            <input v-model="todo" type="text" placeholder="Type toto here...">
-            <button v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
+            <input v-model="todo" v-on:input="checkInput()" type="text" placeholder="Type toto here...">
+            <button v-show="showAddButton" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
         </form>
             <div>
                 <h3  v-if="todoArray.length > 0">You have to do:</h3>
@@ -15,7 +15,8 @@
                     <!-- </ol> -->
                     </transition-group>
             </div>
-            <h2>Total todos: {{ todoArray.length }}</h2>
+        <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
+        <h2 v-else-if="todoArray.length == 0">You have nothing to do!</h2>
     </div>
 </template>
 
@@ -27,6 +28,7 @@ export default {
     data() {
         return {
             key: 0,
+            showAddButton: false,
             todo: "",
             todoArray: [],
         }
@@ -37,8 +39,13 @@ export default {
     methods: {
         setTodo: function(todo) {
             this.todoArray.push(todo);
+            this.showAddButton = false;
             this.todo = "";
-            console.log("Todos: " + this.todoArray);
+        },
+        checkInput: function() {
+            if (this.todo != "") {
+                this.showAddButton = true;
+            }
         },
         removeTodo: function(key) {
 
@@ -46,7 +53,7 @@ export default {
 
             setTimeout(function () { // for purpose to pass param to callback function
                 removeElem(key);
-                }, 1000);
+                }, 500);
 
             function removeElem (key) {
                 self.todoArray.splice(key, 1);
@@ -114,7 +121,8 @@ export default {
             overflow: hidden;
             &:hover {
                 &::before, &::after {
-                    background: blue;
+                    background: red;
+                    box-shadow: 0 0 5px red;
                 }
             }
 
@@ -138,17 +146,17 @@ export default {
             }
 
             .rounded {
-                    &::before, &::after {
-                        border-radius: 5px;
-                    }
+                &::before, &::after {
+                    border-radius: 5px;
                 }
+            }
 
             .black {
-                    &::before, &::after {
-                        height: 8px;
-                        margin-top: -4px;
-                    }
+                &::before, &::after {
+                    height: 8px;
+                    margin-top: -4px;
                 }
+            }
         }
     }
 </style>
