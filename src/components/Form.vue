@@ -2,7 +2,7 @@
     <div class="form-container">
         <form class="todo-form" name="todo">
             <!-- <h2>{{ todo }}</h2> -->
-            <input class="todo-input" v-model="todo" type="text" placeholder="Type toto here...">
+            <input class="todo-input" v-model="todo" type="text" placeholder="Type todo here...">
             <button class="todo-add" :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
         </form>
 
@@ -27,6 +27,7 @@ export default {
     methods: {
         setTodo: function(todo) {
             let newTodo = {
+                id: this.todoArray.length,
                 todo,
                 done: false,
             };

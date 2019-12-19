@@ -3,7 +3,7 @@
         <h2 v-if="todoArray.length > 0">You have to do:</h2>
         <transition-group name="list" tag="ol">
             <li v-for="(value, key) in todoArray" 
-            :key="key + 'element'" 
+            :key="value.id" 
             :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">
             {{ value.todo }}
                 <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
