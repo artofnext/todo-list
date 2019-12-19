@@ -108,7 +108,7 @@ export default {
             & button {
                 float: right;
                 border: none;
-                margin: 7px;
+                margin: 8px;
                 background-color: transparent;
             }
         }

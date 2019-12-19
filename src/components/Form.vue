@@ -58,6 +58,8 @@ export default {
         border-radius: 30px 0 0 30px;
     }
 
+
+
     .todo-add {
         font-size: 20px;
         line-height: 25px;
@@ -68,9 +70,15 @@ export default {
         background-color: $color-list-background;
         border-left: 1px solid $color-list-background;
 
+        &[disabled] {
+            
+    pointer-events: none;
+
+        }
+
         &:hover {
             background-color: $color-dark-main;
-            color: $color-list-background;
+            color: white;
             border-left: 1px solid $color-dark-main;
         }
     }
