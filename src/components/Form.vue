@@ -36,13 +36,16 @@ export default {
         },
         
     },
-    watch: {
+    watch: {                                // TODO watch don't catch change of an array element
         todoArray() {
             console.log('todoArray: ' + this.todoArray);
+            this.$localStorage.set('todo', this.todoArray);
         }
     },
-    mounted() {
-        this.$localStorage.set('name', 'john');
+    beforeMount() {
+        if (this.$localStorage.hasKey('todo')) {
+            this.todoArray = this.$localStorage.get('todo');
+        }
     },
 }
 </script>
