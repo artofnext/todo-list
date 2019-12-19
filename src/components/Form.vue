@@ -58,6 +58,7 @@ export default {
         box-sizing: border-box;
         border: 1px solid $color-dark-main;
         border-radius: 30px 0 0 30px;
+        outline: none;
     }
 
 

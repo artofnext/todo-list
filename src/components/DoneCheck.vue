@@ -14,14 +14,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+    $color-list-background: #ddd;
+    $color-dark-main: #2c3e50;
+
     div {
             &:hover {
-                background:  red;
-                box-shadow: 0 0 5px red;
+                background: darken($color-list-background, 20%);
+                // box-shadow: 0 0 5px $color-list-background;
             }
         height: 15px;
         width: 15px;
-        border: 1px solid black;
+        border: 1px solid $color-dark-main;
         border-radius: 3px;
         margin: 7px;
 
@@ -40,7 +44,7 @@ export default {
               top: 50%;
               left: 0;
               margin-top: -1px;
-              background: #000;
+              background: $color-dark-main;
             }
 
             &::before {
