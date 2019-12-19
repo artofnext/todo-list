@@ -6,9 +6,7 @@
             <button class="todo-add" :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
         </form>
 
-            <ListTodo :todoArray="todoArray" />
-
-        
+        <ListTodo :todoArray="todoArray" />
     </div>
 </template>
 
@@ -28,7 +26,11 @@ export default {
     },
     methods: {
         setTodo: function(todo) {
-            this.todoArray.push(todo);
+            let newTodo = {
+                todo,
+                done: false,
+            };
+            this.todoArray.push(newTodo);
             this.todo = "";
         },
         

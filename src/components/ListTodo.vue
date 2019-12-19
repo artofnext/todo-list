@@ -2,8 +2,12 @@
     <div>
         <h2 v-if="todoArray.length > 0">You have to do:</h2>
         <transition-group name="list" tag="ol">
-            <li v-for="(value, key) in todoArray" :key="key + 'element'" :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">{{ value }}
+            <li v-for="(value, key) in todoArray" 
+            :key="key + 'element'" 
+            :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">
+            {{ value.todo }}
                 <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
+                <input type="checkbox" v-on:click="checkDone(key)" :checked="todoArray.done" >
             </li>
         </transition-group>
         <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
@@ -30,6 +34,13 @@ export default {
             function removeElem (key) {
                 self.todoArray.splice(key, 1);
             }
+        },
+        checkDone(key) {
+            let self = this;
+
+            self.todoArray[key].done = !self.todoArray[key].done;
+
+            console.log(self.todoArray);
         }
     }
 }
@@ -105,6 +116,10 @@ export default {
             border-radius: 20px;
             // padding-left: 20px;
 
+
+            & input {
+                float: right;
+            }
             & button {
                 float: right;
                 border: none;
