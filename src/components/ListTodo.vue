@@ -8,11 +8,13 @@
             {{ value.todo }}
                 <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
                 <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
-                <DoneCheck class="checkbox" :key="key" v-on:click="checkDone(key)" :checked="value.done" />
+                <DoneCheck class="checkbox" :key="key" v-on:click.native="checkDone(key)" :checked="value.done" />
             </li>
         </transition-group>
         <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
         <h2 v-else>You have nothing to do!</h2>
+        <h2 v-if="alreadyDone">Already done: {{ alreadyDone }}</h2>
+
     </div>
 </template>
 
@@ -47,6 +49,21 @@ export default {
 
             console.log(self.todoArray);
         }
+    },
+    computed: {
+        alreadyDone() {
+            let result = 0;
+            for (let todo of this.todoArray) {
+                if (todo.done) {
+                    result++;
+                }
+            }
+
+            if (result == this.todoArray.length ) {
+                result = "ALL! Well done!";
+            }
+            return result;
+        }
     }
 }
 </script>
@@ -72,7 +89,7 @@ export default {
         background-color: $color-dark-main;
         width: 21px;
         height: 29px;
-        padding: 0 5px 0 4px; 
+        padding: 0 6px 0 3px; 
         margin-right: 10px;
         display: inline-block;
         
@@ -178,4 +195,10 @@ export default {
             }
         }
     }
+
+    .checkbox {
+        height: 15px;
+        width: 15px;
+    }
+
 </style>
