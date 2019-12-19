@@ -7,7 +7,8 @@
             :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">
             {{ value.todo }}
                 <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
-                <input type="checkbox" v-on:click="checkDone(key)" :checked="todoArray.done" >
+                <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
+                <DoneCheck class="checkbox" :key="key" v-on:click="checkDone(key)" :checked="value.done" />
             </li>
         </transition-group>
         <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
@@ -16,12 +17,16 @@
 </template>
 
 <script>
+import DoneCheck from "@/components/DoneCheck"
+
 export default {
     name: "ListTodo",
     props: {
         todoArray: Array,
     },
-
+    components: {
+        DoneCheck,
+    },
     methods: {
         removeTodo: function(key) {
 
@@ -67,10 +72,11 @@ export default {
         background-color: $color-dark-main;
         width: 21px;
         height: 29px;
-        padding-left: 9px;
+        padding: 0 5px 0 4px; 
         margin-right: 10px;
         display: inline-block;
         
+        text-align: center;
 
         font-size: 20px;
         line-height: 30px;
@@ -108,7 +114,6 @@ export default {
             transition: transform 1s;
         }
 
-
         li {
             margin-bottom: 10px;
             width: 550px;
@@ -116,8 +121,7 @@ export default {
             border-radius: 20px;
             // padding-left: 20px;
 
-
-            & input {
+            & .checkbox {
                 float: right;
             }
             & button {
@@ -128,7 +132,7 @@ export default {
             }
         }
 
-        .close{
+        .close {
             position: relative;
             display: inline-block;
             width: 15px;
@@ -136,7 +140,7 @@ export default {
             overflow: hidden;
             &:hover {
                 &::before, &::after {
-                    background: red;
+                    background:  red;
                     box-shadow: 0 0 5px red;
                 }
             }
