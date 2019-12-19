@@ -27,7 +27,7 @@ export default {
     methods: {
         setTodo: function(todo) {
             let newTodo = {
-                id: this.todoArray.length,
+                id: this.todoArray.length, // Need this for proper vue key in v-for
                 todo,
                 done: false,
             };
