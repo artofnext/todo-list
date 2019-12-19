@@ -5,23 +5,26 @@
             <input v-model="todo" type="text" placeholder="Type toto here...">
             <button :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
         </form>
-            <div>
+
+            <ListTodo :todoArray="todoArray" />
+
+            <!-- <div>
                 <h3  v-if="todoArray.length > 0">You have to do:</h3>
                     <transition-group name="list" tag="ol">
-                    <!-- <ol> -->
+
                         <li v-for="(value, key) in todoArray" :key="key + 'element'" :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">{{ value }}
                             <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
                         </li>
-                    <!-- </ol> -->
+
                     </transition-group>
-            </div>
+            </div> -->
         <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
         <h2 v-else>You have nothing to do!</h2>
     </div>
 </template>
 
 <script>
-// import ListTodo from '@/components/ListTodo';
+import ListTodo from '@/components/ListTodo';
 
 export default {
     name: 'Form',
@@ -32,30 +35,22 @@ export default {
         }
     },
     components: {
-        // ListTodo,
+        ListTodo,
     },
     methods: {
         setTodo: function(todo) {
             this.todoArray.push(todo);
             this.todo = "";
         },
-        removeTodo: function(key) {
-
-            let self = this;
-
-            setTimeout(function () { // for purpose to pass param to callback function
-                removeElem(key);
-                }, 50);
-
-            function removeElem (key) {
-                self.todoArray.splice(key, 1);
-            }
-        }
+        
     },
     watch: {
         todoArray() {
             console.log('todoArray: ' + this.todoArray);
         }
+    },
+    mounted() {
+        this.$localStorage.set('name', 'john');
     },
 }
 </script>
