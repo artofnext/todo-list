@@ -1,11 +1,13 @@
 <template>
     <div>
-        <h3  v-if="todoArray.length > 0">You have to do:</h3>
-            <transition-group name="list" tag="ol">
-                <li v-for="(value, key) in todoArray" :key="key + 'element'" :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">{{ value }}
-                    <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
-                </li>
-            </transition-group>
+        <h2 v-if="todoArray.length > 0">You have to do:</h2>
+        <transition-group name="list" tag="ol">
+            <li v-for="(value, key) in todoArray" :key="key + 'element'" :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">{{ value }}
+                <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
+            </li>
+        </transition-group>
+        <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
+        <h2 v-else>You have nothing to do!</h2>
     </div>
 </template>
 
@@ -35,14 +37,42 @@ export default {
 
 <style lang="scss" scoped>
     $color-list-background: #ddd;
+    $color-dark-main: #2c3e50;
+
+    ol {
+        list-style: none;
+        counter-reset: my-awesome-counter;
+    }
+    ol li {
+        counter-increment: my-awesome-counter;
+    }
+    ol li::before {
+        content: counter(my-awesome-counter) "";
+        color: white;
+        font-weight: bold;
+
+        border: 1px solid $color-dark-main;
+        border-radius: 30px;
+        background-color: $color-dark-main;
+        width: 21px;
+        height: 29px;
+        padding-left: 9px;
+        margin-right: 10px;
+        display: inline-block;
+        
+
+        font-size: 20px;
+        line-height: 30px;
+    }
 
     ol {
         margin: 0 auto;
-        max-width: 500px;
+        max-width: 550px;
         width: 100%;
         text-align: left;
         font-size: 20px;
         line-height: 30px;
+        padding-left: 0;
 
         .odd {
             background-color: $color-list-background;
@@ -53,8 +83,8 @@ export default {
         }
 
         .list-item {
-            // display: inline-block;
-            // margin-right: 10px;
+            // padding-left: 20px;
+            // box-sizing: border-box;
         }
         .list-enter-active, .list-leave-active {
             transition: all 1s;
@@ -69,7 +99,12 @@ export default {
 
 
         li {
-            width: 450px;
+            margin-bottom: 10px;
+            width: 550px;
+            border: 1px solid $color-dark-main;
+            border-radius: 20px;
+            // padding-left: 20px;
+
             & button {
                 float: right;
                 border: none;
