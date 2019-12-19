@@ -62,6 +62,10 @@ export default {
             if (result == this.todoArray.length ) {
                 result = "ALL! Well done!";
             }
+
+            if (this.todoArray.length == 0) {
+                result = false;
+            }
             return result;
         }
     }
