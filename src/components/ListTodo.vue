@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Modal modal-title="Modal Warning!" />
         <h2 v-if="todoArray.length > 0">You have to do:</h2>
         <transition-group name="list" tag="ol">
             <li v-for="(value, key) in todoArray" 
@@ -22,15 +23,22 @@
 <script>
 import DoneCheck from "@/components/DoneCheck"
 import CloseButton from "@/components/CloseButton"
+import Modal from "@/components/Modal";
 
 export default {
     name: "ListTodo",
     props: {
         todoArray: Array,
     },
+    data() {
+        return {
+            modalOpen: false,
+        }
+    },
     components: {
         DoneCheck,
         CloseButton,
+        Modal,
     },
     methods: {
         removeTodo: function(key) {

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Modal modal-title="Modal Warning!" />
+    
    <message :msg="msg" />
    <TodoForm />
   </div>
@@ -10,7 +10,7 @@
 
 import Message from "@/components/Message";
 import TodoForm from "@/components/Form";
-import Modal from "@/components/Modal";
+
 
 export default {
   name: "App",
@@ -22,7 +22,6 @@ export default {
   components: {
     Message,
     TodoForm,
-    Modal,
   },
    
 };
