@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Modal modal-title="Modal Warning!" />
+        <Modal v-model="modalOpen" modal-title="Modal Warning!" />
         <h2 v-if="todoArray.length > 0">You have to do:</h2>
         <transition-group name="list" tag="ol">
             <li v-for="(value, key) in todoArray" 
@@ -8,7 +8,7 @@
             :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">
             {{ value.todo }}
                 <!-- <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button> -->
-                <CloseButton class="list-close" v-on:click.native="removeTodo(key)" />
+                <CloseButton class="list-close" v-on:click.native="openModal" />
                 <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
                 <DoneCheck class="checkbox" :key="key" v-on:click.native="checkDone(key)" :checked="value.done" />
             </li>
@@ -59,6 +59,9 @@ export default {
             self.todoArray[key].done = !self.todoArray[key].done;
 
             console.log(self.todoArray);
+        },
+        openModal() {
+            this.modalOpen = !this.modalOpen;
         }
     },
     computed: {

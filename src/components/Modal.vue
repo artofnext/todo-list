@@ -1,8 +1,8 @@
 <template>
-    <div class="modal"  v-on:click="modalTitle = 'Close!'" >
+    <div class="modal" v-show="value"  v-on:click="closeModal()" >
         <div class="modal__container" v-on:click.stop>
             <h2 class="modal__title">{{ modalTitle }}</h2>
-            <CloseButton class="list-close" v-on:click.native="modalTitle = 'Close!'" />
+            <CloseButton class="list-close" v-on:click.native="closeModal()" />
         </div>
     </div>
 </template>
@@ -14,11 +14,18 @@ export default {
     name: "Modal",
     props: {
         modalTitle: String,
-        modalOpen: Boolean,
+        value: {
+            required: true,
+        }
     },
     components: {
         CloseButton,
     },
+    methods: {
+        closeModal() {
+            this.$emit("input", !this.value);
+        }
+    }
 }
 </script>
 
