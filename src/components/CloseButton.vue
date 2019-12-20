@@ -1,5 +1,5 @@
 <template>
-    <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
+    <button class="close rounded black"></button>
 </template>
 
 <script>
