@@ -6,7 +6,8 @@
             :key="value.id" 
             :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">
             {{ value.todo }}
-                <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button>
+                <!-- <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button> -->
+                <CloseButton class="list-close" v-on:click.native="removeTodo(key)" />
                 <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
                 <DoneCheck class="checkbox" :key="key" v-on:click.native="checkDone(key)" :checked="value.done" />
             </li>
@@ -20,6 +21,7 @@
 
 <script>
 import DoneCheck from "@/components/DoneCheck"
+import CloseButton from "@/components/CloseButton"
 
 export default {
     name: "ListTodo",
@@ -28,6 +30,7 @@ export default {
     },
     components: {
         DoneCheck,
+        CloseButton,
     },
     methods: {
         removeTodo: function(key) {
@@ -145,7 +148,7 @@ export default {
             & .checkbox {
                 float: right;
             }
-            & button {
+            & .list-close {
                 float: right;
                 border: none;
                 margin: 8px;
@@ -153,51 +156,51 @@ export default {
             }
         }
 
-        .close {
-            position: relative;
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            overflow: hidden;
-            &:hover {
-                &::before, &::after {
-                    background:  red;
-                    box-shadow: 0 0 5px red;
-                }
-            }
+        // .close {
+        //     position: relative;
+        //     display: inline-block;
+        //     width: 15px;
+        //     height: 15px;
+        //     overflow: hidden;
+        //     &:hover {
+        //         &::before, &::after {
+        //             background:  red;
+        //             box-shadow: 0 0 5px red;
+        //         }
+        //     }
 
-            &::before, &::after {
-              content: '';
-              position: absolute;
-              height: 2px;
-              width: 100%;
-              top: 50%;
-              left: 0;
-              margin-top: -1px;
-              background: #000;
-            }
+        //     &::before, &::after {
+        //       content: '';
+        //       position: absolute;
+        //       height: 2px;
+        //       width: 100%;
+        //       top: 50%;
+        //       left: 0;
+        //       margin-top: -1px;
+        //       background: #000;
+        //     }
 
-            &::before {
-                transform: rotate(45deg);
-            }
+        //     &::before {
+        //         transform: rotate(45deg);
+        //     }
 
-            &::after {
-                transform: rotate(-45deg);
-            }
+        //     &::after {
+        //         transform: rotate(-45deg);
+        //     }
 
-            .rounded {
-                &::before, &::after {
-                    border-radius: 5px;
-                }
-            }
+        //     .rounded {
+        //         &::before, &::after {
+        //             border-radius: 5px;
+        //         }
+        //     }
 
-            .black {
-                &::before, &::after {
-                    height: 8px;
-                    margin-top: -4px;
-                }
-            }
-        }
+        //     .black {
+        //         &::before, &::after {
+        //             height: 8px;
+        //             margin-top: -4px;
+        //         }
+        //     }
+        // }
     }
 
     .checkbox {
