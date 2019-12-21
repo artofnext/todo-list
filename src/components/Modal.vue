@@ -1,8 +1,9 @@
 <template>
     <div class="modal" v-show="value"  v-on:click="closeModal()" >
         <div class="modal__container" v-on:click.stop>
-            <h2 class="modal__title">{{ modalTitle }}</h2>
+            <h2 class="modal__title">{{ modalTitle + modalKey  }}</h2>
             <CloseButton class="list-close" v-on:click.native="closeModal()" />
+            <button class="ok-button" v-on:click="confirmAction()">OK</button>
         </div>
     </div>
 </template>
@@ -14,6 +15,7 @@ export default {
     name: "Modal",
     props: {
         modalTitle: String,
+        modalKey: Number,
         value: {
             required: true,
         }
@@ -24,6 +26,10 @@ export default {
     methods: {
         closeModal() {
             this.$emit("input", !this.value);
+        },
+        confirmAction() {
+            this.$emit('confirmed', this.modalKey);
+            this.closeModal();
         }
     }
 }
