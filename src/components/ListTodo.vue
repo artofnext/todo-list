@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Modal v-model="modalOpen" :modalKey="modalKey" v-on:confirmed="removeTodo(modalKey)" modal-title="Modal Warning!" />
+        <Modal v-model="modalOpen" :modalKey="modalKey" v-on:confirmed="removeTodo(modalKey)" modal-title="Delete todo # " />
         <h2 v-if="todoArray.length > 0">You have to do:</h2>
         <transition-group name="list" tag="ol">
             <li v-for="(value, key) in todoArray" 

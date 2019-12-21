@@ -3,7 +3,7 @@
         <form class="todo-form" name="todo">
             <!-- <h2>{{ todo }}</h2> -->
             <input class="todo-input" v-model="todo" type="text" placeholder="Type todo here...">
-            <button class="todo-add" :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
+            <button class="todo-add button" :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
         </form>
 
         <ListTodo :todoArray="todoArray" />
@@ -68,16 +68,22 @@ export default {
         outline: none;
     }
 
-
-
-    .todo-add {
+    .button {
         font-size: 20px;
         line-height: 25px;
         width: 100px;
         height: 50px;
         border: 1px solid $color-dark-main;
-        border-radius: 0 30px 30px 0;
         background-color: $color-list-background;
+
+        &:hover {
+            background-color: $color-dark-main;
+            color: white;
+        }
+    }
+
+    .todo-add {
+        border-radius: 0 30px 30px 0;
         border-left: 1px solid $color-list-background;
 
         &[disabled] {
@@ -87,8 +93,6 @@ export default {
         }
 
         &:hover {
-            background-color: $color-dark-main;
-            color: white;
             border-left: 1px solid $color-dark-main;
         }
     }
