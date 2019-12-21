@@ -1,7 +1,7 @@
 <template>
     <div class="modal" v-show="value"  v-on:click="closeModal()" >
         <div class="modal__container" v-on:click.stop>
-            <h2 class="modal__title">{{ modalTitle + modalKey  }}</h2>
+            <h2 class="modal__title">{{ modalTitle + (modalKey + 1) }}</h2>
             <CloseButton class="modal-close" v-on:click.native="closeModal()" />
             <button class="ok-button button" v-on:click="confirmAction()">OK</button>
         </div>
@@ -41,7 +41,7 @@ export default {
     .modal {
         position: fixed;
         top: 0;
-        background-color: rgba($color: #000000, $alpha: .5);
+        background-color: rgba($color: $color-dark-main, $alpha: .5);
         width: 100vw;
         height: 100vh;
         z-index: 10;
@@ -62,7 +62,7 @@ export default {
         transform: translate(-50%, -50%);
         z-index: 20;
         border-radius: 10px;
-        box-shadow: 0 0 10px black;
+        box-shadow: 0 0 10px $color-dark-main;
     }
 
     .modal-close {
