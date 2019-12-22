@@ -58,6 +58,7 @@ export default {
             let self = this;
 
             self.todoArray[key].done = !self.todoArray[key].done;
+            self.todoArray.$emit('insert'); //TODO
 
             console.log(self.todoArray);
         },
