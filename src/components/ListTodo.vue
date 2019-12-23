@@ -4,13 +4,16 @@
         <h2 v-if="todoArray.length > 0">You have to do:</h2>
         <transition-group name="list" tag="ol">
             <li v-for="(value, key) in todoArray" 
-            :key="value.id" 
-            :class="'list-item ' + ((key % 2) ? 'even' : 'odd')">
+            :key="value.id"
+
+
+            :class="'list-item ' + ((key % 2) ? 'even' : 'odd')"
+            @mousedown.prevent="startDrag(key)" @mouseup="stopDrag(key)" >
             {{ value.todo }}
                 <!-- <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button> -->
                 <CloseButton class="list-close" v-on:click.native="openModal(key)" />
                 <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
-                <DoneCheck class="checkbox" :key="key" v-on:click.native="checkDone(key)" :checked="value.done" />
+                <DoneCheck class="checkbox" :key="key" v-on:click.stop.native="checkDone(key)" :checked="value.done" />
             </li>
         </transition-group>
         <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
@@ -24,6 +27,7 @@
 import DoneCheck from "@/components/DoneCheck"
 import CloseButton from "@/components/CloseButton"
 import Modal from "@/components/Modal";
+import { stringify } from 'querystring';
 
 export default {
     name: "ListTodo",
@@ -34,6 +38,7 @@ export default {
         return {
             modalOpen: false,
             modalKey: null,
+            elementKey: null,
         }
     },
     components: {
@@ -58,7 +63,7 @@ export default {
             let self = this;
 
             self.todoArray[key].done = !self.todoArray[key].done;
-            this.$emit('changed'); //TODO
+            this.$emit('changed');
 
             console.log(self.todoArray);
         },
@@ -66,7 +71,22 @@ export default {
             console.log(key);
             this.modalKey = key;
             this.modalOpen = !this.modalOpen;
-        }
+        },
+
+        startDrag(key) {
+            console.log('start' + key);
+            this.elementKey = key;
+        },
+
+        stopDrag(key) {
+            console.log('stop' + key);
+            let elem =  this.todoArray.splice(this.elementKey, 1);
+            console.log('elem ' + stringify(elem[0]));
+
+            this.todoArray.splice(key, 0, elem[0]);
+
+        },
+
     },
     computed: {
         alreadyDone() {
