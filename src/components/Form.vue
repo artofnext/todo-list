@@ -6,7 +6,7 @@
             <button class="todo-add button" :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
         </form>
 
-        <ListTodo :todoArray="todoArray" />
+        <ListTodo :todoArray="todoArray" v-on:changed="refreshLocals()" />
     </div>
 </template>
 
@@ -37,11 +37,16 @@ export default {
             this.todoArray.push(newTodo);
             this.todo = "";
         },
+
+        refreshLocals: function () {        // refresh todoArray in Local Storage
+            console.log('todoArray: refreshed');
+            this.$localStorage.set('todo', this.todoArray);
+        }
         
     },
-    watch: {                                // TODO watch don't catch change of an array element
+    watch: {                                // watch don't catch change of an array element
         todoArray() {
-            console.log('todoArray: ' + this.todoArray);
+            // console.log('todoArray: ' + this.todoArray);
             this.$localStorage.set('todo', this.todoArray);
         }
     },
