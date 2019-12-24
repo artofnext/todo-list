@@ -22,7 +22,9 @@
         >
           <!-- @mousedown.prevent="startDrag(key)"
           @mouseup="stopDrag(key)" -->
-          {{ value.todo }}
+          <p class="todo-item">
+            {{ value.todo }}
+          </p>
           <!-- <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button> -->
           <CloseButton class="list-close action-button" v-on:click.native="openModal(key)" />
           <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
@@ -152,10 +154,12 @@ ol li::before {
   border-radius: 30px;
   background-color: $color-dark-main;
   width: 21px;
-  height: 29px;
+//   height: inherit;
+  height: 100%;
   padding: 0 6px 0 3px;
   margin-right: 10px;
   display: inline-block;
+  vertical-align: top;
 
   text-align: center;
 
@@ -218,6 +222,13 @@ ol {
       border: none;
       margin: 8px;
       background-color: transparent;
+    }
+
+    .todo-item {
+        margin: 0;
+        display: inline-block;
+        width: 80%;
+        // padding: 0 20px 0 20px;
     }
   }
 
