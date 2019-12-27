@@ -1,16 +1,19 @@
 <template>
     <div 
-    class="check-outer" 
+    class="outer" 
     :class="{ checked: checked, disabled: disabled }"
     @click="changeState()"
     >
-        <div class="check-inner"></div>
+        <div 
+        class="inner"
+        :class="{ checked: checked, disabled: disabled }"
+        ></div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Ceckbox",
+    name: "Checkbox",
     props: {
         checked: {
             type: Boolean,
@@ -24,7 +27,11 @@ export default {
     },
     methods: {
         changeState() {
-            this.$emit("changed", !this.checked);
+            if (this.disabled) {
+                return;
+            }
+            this.checked = !this.checked;
+            this.$emit("changed", this.checked);
         },
     }
 }
@@ -34,25 +41,58 @@ export default {
     $color-dark-main: #2c3e50;
     $color-list-background: #ddd;
 
-    .check-outer {
+    .outer {
+        position: relative;
         margin: 2px;
-        height: 10px;
-        width: 25px;
+        height: 24px;
+        width: 45px;
         border: 1px solid $color-dark-main;
         background-color: $color-list-background;
+        border-radius: 15px;
 
-        :hover {
+        &:hover {
             background-color: darken($color-list-background, 10%);
+
+            .inner {
+            background-color: darken(white, 10%);
         }
 
-        :disabled {
-            background-color: lighten($color-list-background, 10%);
-            border: 1px solid $color-list-background;
+        }
 
+        &.checked {
+            // background-color: lighten($color-dark-main, 10%);
+            background-color: $color-dark-main;
+        }
+
+        &.disabled {
+            background-color: lighten($color-list-background, 10%);
+            border: 1px solid  lighten($color-dark-main, 10%);
+
+            &.checked {
+                background-color: lighten($color-dark-main, 20%);
+            }
         }
     }
 
-    .check-inner {
-
+    .inner {
+        position: absolute;
+        margin: 2px;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        // border: 1px solid white;
+        border: 1px solid $color-dark-main;
+        background-color: white;
+        
+        &.checked {
+            // background-color: $color-list-background;
+            left: 20px;
+        }
+        
+        &.disabled {
+            background-color: lighten($color-list-background, 10%);
+            border: 1px solid  lighten($color-dark-main, 10%);
+        }
     }
 </style>

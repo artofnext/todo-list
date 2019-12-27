@@ -20,6 +20,7 @@
           :value="alreadyDone" 
           />
     </div>
+    <CheckBox :checked="true" :disabled="false" />
     <draggable
       :list="todoArray"
       tag="ol"
@@ -58,6 +59,7 @@ import Modal from "@/components/Modal";
 import { stringify } from "querystring";
 import Draggable from "vuedraggable";
 import BoxNumber from "@/components/BoxNumber";
+import CheckBox from "@/components/CheckBox";
 
 export default {
   name: "ListTodo",
@@ -77,6 +79,7 @@ export default {
     Modal,
     Draggable,
     BoxNumber,
+    CheckBox,
   },
   methods: {
     removeTodo: function(key) {
