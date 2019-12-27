@@ -7,15 +7,19 @@
       modal-title="Delete todo # "
     />
     <!-- <h2 v-if="todoArray.length > 0">You have to do:</h2> -->
-    <p class="inline" v-if="todoArray.length > 0">
-      Total todos: 
-        <BoxNumber :value="todoArray.length" />
-      </p>
-    <p class="inline" v-else>You have nothing to do!</p>
-    <p class="inline" v-if="alreadyDone">
-      Already done: 
-        <BoxNumber :value="alreadyDone" />
-      </p>
+    <div class="stats-block">
+          <BoxNumber 
+          v-if="todoArray.length > 0" 
+          :message="'Total todos:'" 
+          :value="todoArray.length" 
+          />
+      <p class="inline" v-else>You have nothing to do!</p>
+          <BoxNumber 
+          v-if="alreadyDone" 
+          :message="'Already done:'" 
+          :value="alreadyDone" 
+          />
+    </div>
     <draggable
       :list="todoArray"
       tag="ol"
@@ -127,7 +131,7 @@ export default {
       }
 
       if (result == this.todoArray.length) {
-        result = "ALL! Well done!";
+        result = "all";
       }
 
       if (this.todoArray.length == 0) {
@@ -145,7 +149,7 @@ $color-dark-main: #2c3e50;
 $color-active-background: #ffc7c7;
 
 .inline {
-  display: inline;
+  // display: inline;
 }
 
 ol {
@@ -175,6 +179,16 @@ ol li::before {
 
   font-size: 20px;
   line-height: 30px;
+}
+
+.stats-block {
+  margin: 0 auto;
+  max-width: 550px;
+  width: 100%;
+  // text-align: left;
+  font-size: 20px;
+  line-height: 30px;
+  padding-left: 0;
 }
 
 ol {
