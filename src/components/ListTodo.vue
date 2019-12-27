@@ -6,25 +6,32 @@
       v-on:confirmed="removeTodo(modalKey)"
       modal-title="Delete todo # "
     />
-    <h2 v-if="todoArray.length > 0">You have to do:</h2>
-      <draggable 
-        :list="todoArray"
-        tag="ol"
-        ghost-class="moving-item" 
-        filter=".action-button"
-        :animation="200"
-      >
-    <transition-group name="list">
+    <!-- <h2 v-if="todoArray.length > 0">You have to do:</h2> -->
+    <p class="inline" v-if="todoArray.length > 0">
+      Total todos: 
+        <BoxNumber :value="todoArray.length" />
+      </p>
+    <p class="inline" v-else>You have nothing to do!</p>
+    <p class="inline" v-if="alreadyDone">
+      Already done: 
+        <BoxNumber :value="alreadyDone" />
+      </p>
+    <draggable
+      :list="todoArray"
+      tag="ol"
+      ghost-class="moving-item"
+      filter=".action-button"
+      :animation="200"
+    >
+      <transition-group name="list">
         <li
           v-for="(value, key) in todoArray"
           :key="value.id"
           :class="'list-item ' + ((key % 2) ? 'even' : 'odd')"
         >
           <!-- @mousedown.prevent="startDrag(key)"
-          @mouseup="stopDrag(key)" -->
-          <p class="todo-item">
-            {{ value.todo }}
-          </p>
+          @mouseup="stopDrag(key)"-->
+          <p class="todo-item">{{ value.todo }}</p>
           <!-- <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button> -->
           <CloseButton class="list-close action-button" v-on:click.native="openModal(key)" />
           <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
@@ -35,11 +42,8 @@
             :checked="value.done"
           />
         </li>
-    </transition-group>
-      </draggable>
-    <h2 v-if="todoArray.length > 0">Total todos: {{ todoArray.length }}</h2>
-    <h2 v-else>You have nothing to do!</h2>
-    <h2 v-if="alreadyDone">Already done: {{ alreadyDone }}</h2>
+      </transition-group>
+    </draggable>
   </div>
 </template>
 
@@ -49,6 +53,7 @@ import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal";
 import { stringify } from "querystring";
 import Draggable from "vuedraggable";
+import BoxNumber from "@/components/BoxNumber";
 
 export default {
   name: "ListTodo",
@@ -66,7 +71,8 @@ export default {
     DoneCheck,
     CloseButton,
     Modal,
-    Draggable
+    Draggable,
+    BoxNumber,
   },
   methods: {
     removeTodo: function(key) {
@@ -138,6 +144,10 @@ $color-list-background: #ddd;
 $color-dark-main: #2c3e50;
 $color-active-background: #ffc7c7;
 
+.inline {
+  display: inline;
+}
+
 ol {
   list-style: none;
   counter-reset: my-awesome-counter;
@@ -154,8 +164,8 @@ ol li::before {
   border-radius: 30px;
   background-color: $color-dark-main;
   width: 21px;
-//   height: inherit;
-  height: 100%;
+  //   height: inherit;
+  //   height: 100%;
   padding: 0 6px 0 3px;
   margin-right: 10px;
   display: inline-block;
@@ -186,7 +196,7 @@ ol {
   .moving-item {
     background-color: $color-active-background;
   }
-  
+
   .sortable-chosen {
     background-color: $color-active-background;
   }
@@ -205,8 +215,9 @@ ol {
   }
   .list-move {
     transition: transform 1s;
+    // transition: all 1s;
+  
   }
-
   li {
     margin-bottom: 10px;
     width: 550px;
@@ -225,63 +236,16 @@ ol {
     }
 
     .todo-item {
-        margin: 0;
-        display: inline-block;
-        width: 80%;
-        // padding: 0 20px 0 20px;
+      margin: 0;
+      display: inline-block;
+      width: 80%;
+      // padding: 0 20px 0 20px;
     }
   }
-
-  // .close {
-  //     position: relative;
-  //     display: inline-block;
-  //     width: 15px;
-  //     height: 15px;
-  //     overflow: hidden;
-  //     &:hover {
-  //         &::before, &::after {
-  //             background:  red;
-  //             box-shadow: 0 0 5px red;
-  //         }
-  //     }
-
-  //     &::before, &::after {
-  //       content: '';
-  //       position: absolute;
-  //       height: 2px;
-  //       width: 100%;
-  //       top: 50%;
-  //       left: 0;
-  //       margin-top: -1px;
-  //       background: #000;
-  //     }
-
-  //     &::before {
-  //         transform: rotate(45deg);
-  //     }
-
-  //     &::after {
-  //         transform: rotate(-45deg);
-  //     }
-
-  //     .rounded {
-  //         &::before, &::after {
-  //             border-radius: 5px;
-  //         }
-  //     }
-
-  //     .black {
-  //         &::before, &::after {
-  //             height: 8px;
-  //             margin-top: -4px;
-  //         }
-  //     }
-  // }
 }
 
 .checkbox {
   height: 15px;
   width: 15px;
 }
-
 </style>
