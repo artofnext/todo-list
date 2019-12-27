@@ -32,9 +32,24 @@ export default {
 
 <style lang="scss" scoped>
     $color-dark-main: #2c3e50;
+    $color-list-background: #ddd;
 
     .check-outer {
+        margin: 2px;
+        height: 10px;
+        width: 25px;
+        border: 1px solid $color-dark-main;
+        background-color: $color-list-background;
 
+        :hover {
+            background-color: darken($color-list-background, 10%);
+        }
+
+        :disabled {
+            background-color: lighten($color-list-background, 10%);
+            border: 1px solid $color-list-background;
+
+        }
     }
 
     .check-inner {
