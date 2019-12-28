@@ -49,13 +49,14 @@ export default {
         border: 1px solid $color-dark-main;
         background-color: $color-list-background;
         border-radius: 15px;
+        transition: all .3s ease-in-out;
 
         &:hover {
             background-color: darken($color-list-background, 10%);
 
             .inner {
-            background-color: darken(white, 10%);
-        }
+                background-color: darken(white, 10%);
+            }
 
         }
 
@@ -84,9 +85,12 @@ export default {
         // border: 1px solid white;
         border: 1px solid $color-dark-main;
         background-color: white;
+        left: 0;
+        transition: all .3s ease-in-out;
         
         &.checked {
             // background-color: $color-list-background;
+        // transition: all .5s ease-in-out;
             left: 20px;
         }
         
