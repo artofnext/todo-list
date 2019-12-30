@@ -43,7 +43,7 @@
           <DoneCheck
             class="checkbox action-button"
             :key="key"
-            v-on:click.stop.native="checkDone(key)"
+            v-on:click.stop.native="checkDone(value.id)"
             :checked="value.done"
           />
         </li>
@@ -102,8 +102,10 @@ export default {
     },
     checkDone(key) {
       let self = this;
+      // find index of array element by property
+      let index = self.todoArray.map(elem => elem.id).indexOf(key);
 
-      self.todoArray[key].done = !self.todoArray[key].done;
+      self.todoArray[index].done = !self.todoArray[index].done;
       this.$emit("changed");
 
       // console.log(self.todoArray);
