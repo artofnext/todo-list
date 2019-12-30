@@ -21,6 +21,13 @@
           />
     </div>
     <!-- <CheckBox :checked="false" :disabled="false" /> -->
+
+    <div class="filter-block">
+      <button :active="doneFilter == 0" @click="doneFilter = 0" class="filter-button">All</button>
+      <button :active="doneFilter == 1"  @click="doneFilter = 1" class="filter-button">Done</button>
+      <button :active="doneFilter == 2"  @click="doneFilter = 2" class="filter-button">Not Done</button>
+    </div>
+
     <draggable
       :list="todoArray"
       tag="ol"
@@ -286,5 +293,19 @@ ol {
 .checkbox {
   height: 15px;
   width: 15px;
+}
+
+.filter-block {
+
+  .filter-button {
+    height: 30px;
+    width: 100px;
+  }
+
+  & [active] {
+    background-color: $color-dark-main;
+    color: white;
+  }
+
 }
 </style>
