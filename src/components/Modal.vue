@@ -3,7 +3,7 @@
         <div class="modal__container" v-on:click.stop>
             <h2 class="modal__title">{{ modalTitle + (modalKey + 1) }}</h2>
             <CloseButton class="modal-close" v-on:click.native="closeModal()" />
-            <button class="ok-button button" v-on:click="confirmAction()">OK</button>
+            <button class="ok-button button" v-on:click="confirmAction">OK</button>
         </div>
     </div>
 </template>

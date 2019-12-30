@@ -20,7 +20,7 @@
           :value="alreadyDone" 
           />
     </div>
-    <CheckBox :checked="true" :disabled="false" />
+    <!-- <CheckBox :checked="false" :disabled="false" /> -->
     <draggable
       :list="todoArray"
       tag="ol"
@@ -38,7 +38,7 @@
           @mouseup="stopDrag(key)"-->
           <p class="todo-item">{{ value.todo }}</p>
           <!-- <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button> -->
-          <CloseButton class="list-close action-button" v-on:click.native="openModal(key)" />
+          <CloseButton class="list-close action-button" v-on:click.native="openModal(value.id)" />
           <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
           <DoneCheck
             class="checkbox action-button"
@@ -59,7 +59,7 @@ import Modal from "@/components/Modal";
 import { stringify } from "querystring";
 import Draggable from "vuedraggable";
 import BoxNumber from "@/components/BoxNumber";
-import CheckBox from "@/components/CheckBox";
+// import CheckBox from "@/components/CheckBox";
 
 export default {
   name: "ListTodo",
@@ -70,7 +70,8 @@ export default {
     return {
       modalOpen: false,
       modalKey: null,
-      elementKey: null
+      elementKey: null,
+
     };
   },
   components: {
@@ -79,7 +80,7 @@ export default {
     Modal,
     Draggable,
     BoxNumber,
-    CheckBox,
+    // CheckBox,
   },
   methods: {
     removeTodo: function(key) {
@@ -90,8 +91,13 @@ export default {
         removeElem(key);
       }, 50);
 
+      /**
+       * key is the value of id of array todo element
+       */
       function removeElem(key) {
-        self.todoArray.splice(key, 1);
+        // find index of array element by property
+        let index = self.todoArray.map(elem => elem.id).indexOf(key);
+        self.todoArray.splice(index, 1);
       }
     },
     checkDone(key) {
@@ -100,16 +106,16 @@ export default {
       self.todoArray[key].done = !self.todoArray[key].done;
       this.$emit("changed");
 
-      console.log(self.todoArray);
+      // console.log(self.todoArray);
     },
     openModal(key) {
-      console.log(key);
+      // console.log(key);
       this.modalKey = key;
       this.modalOpen = !this.modalOpen;
     },
 
     startDrag(key) {
-      console.log("start" + key);
+      // console.log("start" + key);
       this.elementKey = key;
     },
 
