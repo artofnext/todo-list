@@ -30,7 +30,7 @@
     >
       <transition-group name="list">
         <li
-          v-for="(value, key) in todoArray"
+          v-for="(value, key) in filteredArray"
           :key="value.id"
           :class="'list-item ' + ((key % 2) ? 'even' : 'odd')"
         >
@@ -72,6 +72,8 @@ export default {
       modalKey: null,
       elementKey: null,
 
+      // 0 - show all, 1 - only done, 2 - only not done
+      doneFilter: 0,
     };
   },
   components: {
@@ -149,8 +151,20 @@ export default {
         result = false;
       }
       return result;
+    },
+    filteredArray() {
+      switch (this.doneFilter) {
+        case 1:
+          return this.todoArray.filter(elem => elem.done);
+          break;
+        case 2:
+          return this.todoArray.filter(elem => !elem.done);
+          break;
+        default:
+          return this.todoArray;
+        }
+      }
     }
-  }
 };
 </script>
 
