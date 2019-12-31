@@ -17,8 +17,8 @@ export default {
             overflow: hidden;
             &:hover {
                 &::before, &::after {
-                    background:  red;
-                    box-shadow: 0 0 5px red;
+                    background:  $color-alert;
+                    box-shadow: 0 0 5px $color-alert;
                 }
             }
 
@@ -30,7 +30,7 @@ export default {
               top: 50%;
               left: 0;
               margin-top: -1px;
-              background: #000;
+              background: $color-dark-main;
             }
 
             &::before {

@@ -59,8 +59,8 @@ export default {
 </script>
 
 <style lang="scss">
-    $color-dark-main: #2c3e50;
-    $color-list-background: #ddd;
+    // $color-dark-main: #2c3e50;
+    // $color-list-background: #ddd;
     .todo-input {
         font-size: 20px;
         line-height: 25px;
@@ -83,7 +83,7 @@ export default {
 
         &:hover {
             background-color: $color-dark-main;
-            color: white;
+            color: $color-light;
         }
     }
 

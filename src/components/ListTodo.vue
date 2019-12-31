@@ -20,7 +20,7 @@
           :value="alreadyDone" 
           />
     </div>
-    <!-- <CheckBox :checked="false" :disabled="false" /> -->
+    <!-- <CheckBox :checked="false" :disabled="true" /> -->
 
     <div class="filter-block">
       <button :active="doneFilter == 0" @click="doneFilter = 0" class="filter-button">All</button>
@@ -176,9 +176,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color-list-background: #ddd;
-$color-dark-main: #2c3e50;
-$color-active-background: #ffc7c7;
+// $color-list-background: #ddd;
+// $color-dark-main: #2c3e50;
+// $color-active-background: #ffc7c7;
 
 .inline {
   // display: inline;
@@ -193,12 +193,13 @@ ol li {
 }
 ol li::before {
   content: counter(my-awesome-counter) "";
-  color: white;
+  color: $color-light;
   font-weight: bold;
 
   border: 1px solid $color-dark-main;
   border-radius: 30px;
   background-color: $color-dark-main;
+  // background-color: $test-color;
   width: 21px;
   //   height: inherit;
   //   height: 100%;
@@ -304,7 +305,7 @@ ol {
 
   & [active] {
     background-color: $color-dark-main;
-    color: white;
+    color: $color-light;
   }
 
 }

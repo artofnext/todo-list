@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss">
-$color-dark-main: #2c3e50;
+// $color-dark-main: #2c3e50;
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

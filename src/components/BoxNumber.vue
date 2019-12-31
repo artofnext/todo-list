@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $color-dark-main: #2c3e50;
+    // $color-dark-main: #2c3e50;
 
     .box-number-message,
     .box-wrapper {

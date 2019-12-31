@@ -38,8 +38,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $color-dark-main: #2c3e50;
-    $color-list-background: #ddd;
+    // $color-dark-main: #2c3e50;
+    // $color-list-background: #ddd;
 
     .outer {
         position: relative;
@@ -55,7 +55,7 @@ export default {
             background-color: darken($color-list-background, 10%);
 
             .inner {
-                background-color: darken(white, 10%);
+                background-color: darken($color-light, 10%);
             }
 
         }
@@ -84,7 +84,7 @@ export default {
         box-sizing: border-box;
         // border: 1px solid white;
         border: 1px solid $color-dark-main;
-        background-color: white;
+        background-color: $color-light;
         left: 0;
         transition: all .3s ease-in-out;
         

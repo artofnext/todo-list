@@ -15,8 +15,8 @@ export default {
 
 <style lang="scss" scoped>
 
-    $color-list-background: #ddd;
-    $color-dark-main: #2c3e50;
+    // $color-list-background: #ddd;
+    // $color-dark-main: #2c3e50;
 
     div {
             &:hover {

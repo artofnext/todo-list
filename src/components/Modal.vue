@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $color-dark-main: #2c3e50;
+    // $color-dark-main: #2c3e50;
 
     .modal {
         position: fixed;
@@ -55,7 +55,7 @@ export default {
         position: absolute;
         left: 50%;
         top: 50%;
-        background-color: white;
+        background-color: $color-light;
         width: 90%;
         max-width: 300px;
         height: 200px;
