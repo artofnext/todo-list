@@ -220,7 +220,7 @@ ol li::before {
 
 .stats-block {
   margin: 0 auto;
-  max-width: 550px;
+  max-width: $list-width;
   width: 100%;
   // text-align: left;
   font-size: 20px;
@@ -230,7 +230,7 @@ ol li::before {
 
 ol {
   margin: 0 auto;
-  max-width: 550px;
+  max-width: $list-width;
   width: 100%;
   text-align: left;
   font-size: 20px;
@@ -271,7 +271,7 @@ ol {
   }
   li {
     margin-bottom: 10px;
-    width: 550px;
+    width: $list-width;
     border: 1px solid $color-dark-main;
     border-radius: 20px;
     // padding-left: 20px;
@@ -289,7 +289,7 @@ ol {
     .todo-item {
       margin: 0;
       display: inline-block;
-      width: 80%;
+      width: $list-width - 104;
       // padding: 0 20px 0 20px;
     }
   }

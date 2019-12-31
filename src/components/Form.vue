@@ -64,7 +64,7 @@ export default {
     .todo-input {
         font-size: 20px;
         line-height: 25px;
-        width: 450px;
+        width: $list-width - 100px;
         height: 50px;
         padding: 0 25px;
         box-sizing: border-box;
