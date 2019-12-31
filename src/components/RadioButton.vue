@@ -1,16 +1,31 @@
 <template>
     <div class="filter-block">
-      <button :active="activeIndex == 0" @click="activeIndex = 0" class="filter-button button">All</button>
-      <button :active="activeIndex == 1"  @click="activeIndex = 1" class="filter-button button">Done</button>
-      <button :active="activeIndex == 2"  @click="activeIndex = 2" class="filter-button button">Not Done</button>
+      <button :active="activeIndex == 0" @click="activeIndex = 0" class="filter-button button">
+          All
+            <box-number :value="statistic[0]"/>
+      </button>
+      <button :active="activeIndex == 1"  @click="activeIndex = 1" class="filter-button button">
+          Done
+            <box-number :value="statistic[1]"/>
+          </button>
+      <button :active="activeIndex == 2"  @click="activeIndex = 2" class="filter-button button">
+          Not Done
+            <box-number :value="statistic[2]"/>
+          </button>
     </div>
 </template>
 
 <script>
+import BoxNumber from "@/components/BoxNumber.vue"
+
 export default {
     name: "RadioButton",
     props: {
         activeIndex: Number,
+        statistic: Array,
+    },
+    components: {
+        BoxNumber,
     },
     watch: {
         activeIndex() {

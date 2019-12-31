@@ -1,22 +1,22 @@
 <template>
     <div class="box-wrapper">
-        <p class="box-number-message">{{ message }}</p>
+        <!-- <p class="box-number-message">{{ message }}</p> -->
         <p class="box-number-p box-number">{{ value }}</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Box Number",
+    name: "BoxNumber",
     props: {
         value: {
             type: Number,
             required: true,
         },
-        message: {
-            type: String,
-            required: false,
-        }
+        // message: {
+        //     type: String,
+        //     required: false,
+        // }
     },
 }
 </script>
@@ -27,23 +27,24 @@ export default {
     .box-number-message,
     .box-wrapper {
         display: inline-block;
-        width: 50%;
+        // width: 50%;
     }
 
     .box-number {
         border: 1px solid $color-dark-main;
-        border-radius: 5px;
-        padding: 5px;
-        margin: 2px;
-        width: 30px;
+        border-radius: 15px;
+        // padding: 5px;
+        // margin: 2px;
+        width: 20px;
 
         // float: left;
     }
 
     .box-number-p {
         display: inline-block;
-        margin: 2px;
+        margin: 0;
         color: $color-dark-main;
-        font-size: 20px;
+        font-size: 16px;
+        line-height: 20px;
     }
 </style>

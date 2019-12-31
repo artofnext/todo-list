@@ -7,7 +7,7 @@
       modal-title="Delete todo # "
     />
     <!-- <h2 v-if="todoArray.length > 0">You have to do:</h2> -->
-    <div class="stats-block">
+    <!-- <div class="stats-block">
           <BoxNumber 
           v-if="todoArray.length > 0" 
           :message="'Total todos:'" 
@@ -19,7 +19,7 @@
           :message="'Already done:'" 
           :value="alreadyDone" 
           />
-    </div>
+    </div> -->
     <!-- <CheckBox :checked="false" :disabled="true" /> -->
 
     <!-- <div class="filter-block">
@@ -28,7 +28,11 @@
       <button :active="doneFilter == 2"  @click="doneFilter = 2" class="filter-button">Not Done</button>
     </div> -->
 
-    <radio-button :activeIndex="doneFilter" @state-change=" e => doneFilter = e " />
+    <radio-button 
+      :activeIndex="doneFilter" 
+      :statistic="[todoArray.length, alreadyDone, todoArray.length - alreadyDone]" 
+      @state-change=" e => doneFilter = e " 
+    />
 
     <draggable
       :list="todoArray"
@@ -67,7 +71,7 @@ import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal";
 import { stringify } from "querystring";
 import Draggable from "vuedraggable";
-import BoxNumber from "@/components/BoxNumber";
+// import BoxNumber from "@/components/BoxNumber";
 import RadioButton from "@/components/RadioButton";
 // import CheckBox from "@/components/CheckBox";
 
@@ -91,7 +95,7 @@ export default {
     CloseButton,
     Modal,
     Draggable,
-    BoxNumber,
+    // BoxNumber,
     RadioButton,
     // CheckBox,
   },
