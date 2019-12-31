@@ -22,11 +22,13 @@
     </div>
     <!-- <CheckBox :checked="false" :disabled="true" /> -->
 
-    <div class="filter-block">
+    <!-- <div class="filter-block">
       <button :active="doneFilter == 0" @click="doneFilter = 0" class="filter-button">All</button>
       <button :active="doneFilter == 1"  @click="doneFilter = 1" class="filter-button">Done</button>
       <button :active="doneFilter == 2"  @click="doneFilter = 2" class="filter-button">Not Done</button>
-    </div>
+    </div> -->
+
+    <radio-button :activeIndex="doneFilter" />
 
     <draggable
       :list="todoArray"
@@ -66,6 +68,7 @@ import Modal from "@/components/Modal";
 import { stringify } from "querystring";
 import Draggable from "vuedraggable";
 import BoxNumber from "@/components/BoxNumber";
+import RadioButton from "@/components/RadioButton";
 // import CheckBox from "@/components/CheckBox";
 
 export default {
@@ -89,6 +92,7 @@ export default {
     Modal,
     Draggable,
     BoxNumber,
+    RadioButton,
     // CheckBox,
   },
   methods: {
@@ -294,19 +298,5 @@ ol {
 .checkbox {
   height: 15px;
   width: 15px;
-}
-
-.filter-block {
-
-  .filter-button {
-    height: 30px;
-    width: 100px;
-  }
-
-  & [active] {
-    background-color: $color-dark-main;
-    color: $color-light;
-  }
-
 }
 </style>
