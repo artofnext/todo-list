@@ -28,7 +28,7 @@
       <button :active="doneFilter == 2"  @click="doneFilter = 2" class="filter-button">Not Done</button>
     </div> -->
 
-    <radio-button :activeIndex="doneFilter" />
+    <radio-button :activeIndex="doneFilter" @state-change=" e => doneFilter = e " />
 
     <draggable
       :list="todoArray"

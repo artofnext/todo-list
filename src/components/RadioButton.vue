@@ -11,6 +11,11 @@ export default {
     name: "RadioButton",
     props: {
         activeIndex: Number,
+    },
+    watch: {
+        activeIndex() {
+            this.$emit("state-change", this.activeIndex);
+        }
     }
 }
 </script>
