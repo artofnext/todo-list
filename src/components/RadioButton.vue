@@ -43,7 +43,7 @@ export default {
 <style lang="scss" scoped>
 .filter-block {
 
-    margin: 20px auto;
+    margin: 20px auto 10px;
 
   .filter-button {
     height: 30px;
@@ -65,12 +65,12 @@ export default {
 
         &:first-child {
             // border-radius: 0 30px 30px 0;
-            border-radius: 30px 0 0 30px;
+            border-radius: 30px 0 0 5px;
             border-right: 1px solid transparent;
         }
 
         &:last-child {
-            border-radius: 0 30px 30px 0;
+            border-radius: 0 30px 5px 0;
             // border-radius: 30px 0 0 30px;
             border-left: 1px solid transparent;
         }
