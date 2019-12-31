@@ -1,14 +1,14 @@
 <template>
     <div class="filter-block">
-      <button :active="activeIndex == 0" @click="activeIndex = 0" class="filter-button button">
+      <button :active="activeIndex == 0" @click="index = 0" class="filter-button button">
           All
             <box-number :value="statistic[0]"/>
       </button>
-      <button :active="activeIndex == 1"  @click="activeIndex = 1" class="filter-button button">
+      <button :active="activeIndex == 1"  @click="index = 1" class="filter-button button">
           Done
             <box-number :value="statistic[1]"/>
           </button>
-      <button :active="activeIndex == 2"  @click="activeIndex = 2" class="filter-button button">
+      <button :active="activeIndex == 2"  @click="index = 2" class="filter-button button">
           Not Done
             <box-number :value="statistic[2]"/>
           </button>
@@ -24,12 +24,17 @@ export default {
         activeIndex: Number,
         statistic: Array,
     },
+    data() {
+        return {
+            index: this.activeIndex, // use to avoid mutating props directly
+        }
+    },
     components: {
         BoxNumber,
     },
     watch: {
-        activeIndex() {
-            this.$emit("state-change", this.activeIndex);
+        index() {
+            this.$emit("state-change", this.index);
         }
     }
 }
