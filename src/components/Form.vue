@@ -90,11 +90,11 @@ export default {
     .todo-add {
         border-radius: 0 30px 30px 0;
         border-left: 1px solid $color-list-background;
+        color: $color-dark-main;
 
         &[disabled] {
-            
-    pointer-events: none;
-
+            color: darken($color-list-background, 30%);
+            pointer-events: none;
         }
 
         &:hover {
