@@ -41,10 +41,13 @@ export default {
     .modal {
         position: fixed;
         top: 0;
-        background-color: rgba($color: $color-dark-main, $alpha: .5);
+        background-color: rgba($color: $color-list-background, $alpha: .5);
         width: 100vw;
         height: 100vh;
         z-index: 10;
+        // filter: blur(5px);
+        backdrop-filter: blur(2px);
+        // transition: all .3s ease-in-out;
     }
 
     .modal__title {
@@ -62,7 +65,7 @@ export default {
         transform: translate(-50%, -50%);
         z-index: 20;
         border-radius: 10px;
-        box-shadow: 0 0 10px $color-dark-main;
+        box-shadow: 0 0 10px darken($color-list-background, 20%);
     }
 
     .modal-close {
@@ -73,5 +76,6 @@ export default {
 
     .ok-button {
         border-radius: 30px;
+        color: $color-dark-main;
     }
 </style>
