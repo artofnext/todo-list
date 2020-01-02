@@ -43,7 +43,7 @@
     >
       <transition-group name="list">
         <li
-          v-for="(value, key) in filteredArray"
+          v-for="(value, key) in paginatedArray"
           :key="value.id"
           :class="'list-item ' + ((key % 2) ? 'even' : 'odd')"
         >
@@ -90,7 +90,7 @@ export default {
       doneFilter: 0,
       // pagination 
       pageSize: 10,
-      pageIndex: 0,
+      pageIndex: 1,
     };
   },
   components: {
@@ -150,6 +150,13 @@ export default {
       console.log("elem " + stringify(elem[0]));
 
       this.todoArray.splice(key, 0, elem[0]);
+    }
+  },
+  watch: {
+    filteredArray() {  // when page index goes out of array, set page index to 0
+      if (this.pageIndex * this.pageSize >= this.filteredArray.length) {
+        this.pageIndex = 0;
+      }
     }
   },
   computed: {
