@@ -88,7 +88,9 @@ export default {
 
       // 0 - show all, 1 - only done, 2 - only not done
       doneFilter: 0,
+      // pagination 
       pageSize: 10,
+      pageIndex: 0,
     };
   },
   components: {
@@ -181,7 +183,10 @@ export default {
       }
     },
     paginatedArray() {
-
+      return this.filteredArray.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize);
+    },
+    pages() {
+      return Math.ceil(this.filteredArray.length / this.pageSize);
     }
   }
 };
