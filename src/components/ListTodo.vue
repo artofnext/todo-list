@@ -18,6 +18,7 @@
       ghost-class="moving-item"
       filter=".action-button"
       :animation="200"
+      :style="{ counterReset: 'my-awesome-counter ' + pageIndex * pageSize }"
     >
       <transition-group name="list">
         <li
