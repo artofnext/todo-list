@@ -36,6 +36,7 @@
         </li>
       </transition-group>
     </draggable>
+    <paginator />
   </div>
 </template>
 
@@ -46,6 +47,7 @@ import Modal from "@/components/Modal";
 // import { stringify } from "querystring";
 import Draggable from "vuedraggable";
 import RadioButton from "@/components/RadioButton";
+import Paginator from "@/components/Paginator";
 
 export default {
   name: "ListTodo",
@@ -71,6 +73,7 @@ export default {
     Modal,
     Draggable,
     RadioButton,
+    Paginator,
   },
   methods: {
     removeTodo: function(key) {
