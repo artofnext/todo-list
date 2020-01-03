@@ -2,7 +2,7 @@
     <div class="paginator-container">
         <button 
         name="previous" 
-        :active="isPrevActive" 
+        :disadled="isPrevDisabled" 
         @click="pageToGo = activePage - 1;" 
         class="button-prev paginator-button button"
         >
@@ -10,25 +10,30 @@
         </button>
         <button 
         name="first" 
-        :active="isFirstActive"
+        :disadled="isFirstDisabled"
         @click="pageToGo = 0;" 
         class="button-first paginator-button button"
         >
             First
         </button>
 
-        <button 
-        v-for="page in pages" 
-        :key="page" name="page" 
-        @click="pageToGo = page - 1;" 
-        class="button-page paginator-button button"
-        >
-            {{ page }}
-        </button>
+        <div class="pages-wrapper">
+
+            <button 
+            v-for="page in pages" 
+            :key="page"
+            @click="pageToGo = page - 1;"
+            :active="page - 1 == activePage"
+            class="button-page paginator-button button"
+            >
+                {{ page }}
+            </button>
+
+        </div>
 
         <button 
         name="last" 
-        :active="isLastActive" 
+        :disadled="isLastDisabled" 
         @click="pageToGo = pages - 1;" 
         class="button-last paginator-button button"
         >
@@ -36,7 +41,7 @@
         </button>
         <button 
         name="next" 
-        :active="isNextActive" 
+        :disadled="isNextDisabled" 
         @click="pageToGo = activePage + 1;" 
         class="button-next paginator-button button"
         >
@@ -62,10 +67,10 @@ export default {
         return {
             key: Number,
             pageToGo: 0,
-            isPrevActive: true,
-            isFirstActive: true,
-            isLastActive: true,
-            isNextActive: true,
+            isPrevDisabled: false,
+            isFirstDisabled: true,
+            isLastDisabled: true,
+            isNextDisabled: true,
         }
     },
     watch: {
@@ -84,6 +89,13 @@ export default {
         display: flex;
         justify-content: space-between;
 
+        .pages-wrapper {
+            flex-grow: 1;
+        display: flex;
+        justify-content: space-evenly;
+
+        }
+
         .paginator-button {
             height: 30px;
             // width: $list-width / 4;
@@ -100,12 +112,12 @@ export default {
               background-color: $color-dark-main;
               color: $color-light;
             }
-            &:first-child {
+            &.button-prev {
                 // border-radius: 0 30px 30px 0;
                 border-radius: 5px 0 0 30px;
                 border-right: 1px solid transparent;
             }
-            &:last-child {
+            &.button-next {
                 border-radius: 0 5px 30px 0;
                 // border-radius: 30px 0 0 30px;
                 border-left: 1px solid transparent;
