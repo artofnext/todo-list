@@ -96,6 +96,10 @@ export default {
 
         }
 
+        .button-page {
+            width: initial;
+        }
+
         .paginator-button {
             height: 30px;
             // width: $list-width / 4;
