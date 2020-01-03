@@ -6,28 +6,6 @@
       v-on:confirmed="removeTodo(modalKey)"
       modal-title="Delete todo # "
     />
-    <!-- <h2 v-if="todoArray.length > 0">You have to do:</h2> -->
-    <!-- <div class="stats-block">
-          <BoxNumber 
-          v-if="todoArray.length > 0" 
-          :message="'Total todos:'" 
-          :value="todoArray.length" 
-          />
-      <p class="inline" v-else>You have nothing to do!</p>
-          <BoxNumber 
-          v-if="alreadyDone" 
-          :message="'Already done:'" 
-          :value="alreadyDone" 
-          />
-    </div> -->
-    <!-- <CheckBox :checked="false" :disabled="true" /> -->
-
-    <!-- <div class="filter-block">
-      <button :active="doneFilter == 0" @click="doneFilter = 0" class="filter-button">All</button>
-      <button :active="doneFilter == 1"  @click="doneFilter = 1" class="filter-button">Done</button>
-      <button :active="doneFilter == 2"  @click="doneFilter = 2" class="filter-button">Not Done</button>
-    </div> -->
-
     <radio-button 
       :activeIndex="doneFilter" 
       :statistic="[todoArray.length, alreadyDone, todoArray.length - alreadyDone]" 
@@ -47,12 +25,8 @@
           :key="value.id"
           :class="'list-item ' + ((key % 2) ? 'even' : 'odd')"
         >
-          <!-- @mousedown.prevent="startDrag(key)"
-          @mouseup="stopDrag(key)"-->
           <p class="todo-item">{{ value.todo }}</p>
-          <!-- <button class="close rounded black" v-on:click.prevent="removeTodo(key)"></button> -->
           <CloseButton class="list-close action-button" v-on:click.native="openModal(value.id)" />
-          <!-- <input type="checkbox" v-on:click="checkDone(key)" :checked="value.done" > -->
           <DoneCheck
             class="checkbox action-button"
             :key="key"
@@ -69,11 +43,9 @@
 import DoneCheck from "@/components/DoneCheck";
 import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal";
-import { stringify } from "querystring";
+// import { stringify } from "querystring";
 import Draggable from "vuedraggable";
-// import BoxNumber from "@/components/BoxNumber";
 import RadioButton from "@/components/RadioButton";
-// import CheckBox from "@/components/CheckBox";
 
 export default {
   name: "ListTodo",
@@ -98,9 +70,7 @@ export default {
     CloseButton,
     Modal,
     Draggable,
-    // BoxNumber,
     RadioButton,
-    // CheckBox,
   },
   methods: {
     removeTodo: function(key) {
@@ -127,30 +97,11 @@ export default {
 
       self.todoArray[index].done = !self.todoArray[index].done;
       this.$emit("changed");
-
-      // console.log(self.todoArray);
     },
     openModal(key) {
-      // console.log(key);
       this.modalKey = key;
       this.modalOpen = !this.modalOpen;
     },
-
-    startDrag(key) {
-      // console.log("start" + key);
-      this.elementKey = key;
-    },
-
-    stopDrag(key) {
-      if (key == this.elementKey) {
-        return;
-      }
-      console.log("stop" + key);
-      let elem = this.todoArray.splice(this.elementKey, 1);
-      console.log("elem " + stringify(elem[0]));
-
-      this.todoArray.splice(key, 0, elem[0]);
-    }
   },
   watch: {
     filteredArray() {  // when page index goes out of array, set page index to 0
@@ -200,13 +151,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// $color-list-background: #ddd;
-// $color-dark-main: #2c3e50;
-// $color-active-background: #ffc7c7;
-
-.inline {
-  // display: inline;
-}
 
 ol {
   list-style: none;
@@ -223,10 +167,7 @@ ol li::before {
   border: 1px solid $color-dark-main;
   border-radius: 30px;
   background-color: $color-dark-main;
-  // background-color: $test-color;
   width: 21px;
-  //   height: inherit;
-  //   height: 100%;
   padding: 0 6px 0 3px;
   margin-right: 10px;
   display: inline-block;
@@ -242,7 +183,6 @@ ol li::before {
   margin: 0 auto;
   max-width: $list-width;
   width: 100%;
-  // text-align: left;
   font-size: 20px;
   line-height: 30px;
   padding-left: 0;
@@ -272,29 +212,21 @@ ol {
     background-color: $color-active-background;
   }
 
-  .list-item {
-    // padding-left: 20px;
-    // box-sizing: border-box;
-  }
   .list-enter-active,
   .list-leave-active {
     transition: all 1s;
   }
+
   .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
     opacity: 0;
     transform: translateX(30px);
   }
-  .list-move {
-    transition: transform 1s;
-    // transition: all 1s;
-  
-  }
+
   li {
     margin-bottom: 10px;
     width: $list-width;
     border: 1px solid $color-dark-main;
     border-radius: 20px;
-    // padding-left: 20px;
 
     & .checkbox {
       float: right;
@@ -310,7 +242,6 @@ ol {
       margin: 0;
       display: inline-block;
       width: $list-width - 104;
-      // padding: 0 20px 0 20px;
     }
   }
 }
