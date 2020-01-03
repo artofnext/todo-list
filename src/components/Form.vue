@@ -39,7 +39,7 @@ export default {
         },
 
         refreshLocals: function () {        // refresh todoArray in Local Storage
-            console.log('todoArray: refreshed');
+            console.log('todoArray: web storage refreshed');
             this.$localStorage.set('todo', this.todoArray);
         }
         

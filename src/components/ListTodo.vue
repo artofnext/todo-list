@@ -36,7 +36,7 @@
         </li>
       </transition-group>
     </draggable>
-    <paginator />
+    <paginator :pages="pages" :activePage="pageIndex" @go-page="page => pageIndex = page"/>
   </div>
 </template>
 
@@ -63,8 +63,9 @@ export default {
       // 0 - show all, 1 - only done, 2 - only not done
       doneFilter: 0,
       // pagination 
-      pageSize: 10,
-      pageIndex: 1,
+      pageSize: 5,
+      pageIndex: null,
+      page: null,
     };
   },
   components: {
