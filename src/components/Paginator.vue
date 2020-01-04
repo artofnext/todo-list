@@ -2,47 +2,49 @@
     <div class="paginator-container">
         <button 
         name="previous" 
-        :disadled="isPrevDisabled" 
-        @click="pageToGo = activePage - 1;" 
+        :disabled="!activePage"
+        @click="pageToGo = activePage ? activePage - 1 : 0;" 
         class="button-prev paginator-button button"
         >
             Prev
         </button>
         <button 
         name="first" 
-        :disadled="isFirstDisabled"
-        @click="pageToGo = 0;" 
+        @click="pageToGo = 0;"
+        :active="activePage == 0"
         class="button-first paginator-button button"
         >
             First
         </button>
 
-        <div class="pages-wrapper">
+        <div class="pages-wrapper"
+            v-if="pages > 2"
+        >
 
             <button 
-            v-for="page in pages" 
-            :key="page"
-            @click="pageToGo = page - 1;"
-            :active="page - 1 == activePage"
+            v-for="page in pages - 2" 
+            :key="page + 2"
+            @click="pageToGo = page;"
+            :active="page == activePage"
             class="button-page paginator-button button"
             >
-                {{ page }}
+                {{ page + 1 }}
             </button>
 
         </div>
 
         <button 
         name="last" 
-        :disadled="isLastDisabled" 
-        @click="pageToGo = pages - 1;" 
+        @click="pageToGo = pages - 1;"
+        :active="activePage == pages - 1"
         class="button-last paginator-button button"
         >
-            Last
+            Last ({{ pages }})
         </button>
         <button 
         name="next" 
-        :disadled="isNextDisabled" 
-        @click="pageToGo = activePage + 1;" 
+        :disabled="activePage == pages - 1" 
+        @click="pageToGo = activePage != pages - 1 ? activePage + 1 : pages - 1;" 
         class="button-next paginator-button button"
         >
             Next
@@ -67,10 +69,6 @@ export default {
         return {
             key: Number,
             pageToGo: 0,
-            isPrevDisabled: false,
-            isFirstDisabled: true,
-            isLastDisabled: true,
-            isNextDisabled: true,
         }
     },
     watch: {
@@ -91,13 +89,17 @@ export default {
 
         .pages-wrapper {
             flex-grow: 1;
-        display: flex;
-        justify-content: space-evenly;
+            display: flex;
+            justify-content: space-evenly;
+            // margin: 0 5px;
 
         }
 
         .button-page {
             width: initial;
+            flex-basis: 10%;
+            border-radius: 30px;
+
         }
 
         .paginator-button {
@@ -120,11 +122,31 @@ export default {
                 // border-radius: 0 30px 30px 0;
                 border-radius: 5px 0 0 30px;
                 border-right: 1px solid transparent;
+
+                &[disabled] {
+                    color: darken($color-list-background, 20%);
+                    &:hover {
+                        background-color: $color-list-background;
+                    }
+                }
             }
             &.button-next {
                 border-radius: 0 5px 30px 0;
                 // border-radius: 30px 0 0 30px;
                 border-left: 1px solid transparent;
+
+                &[disabled] {
+                    color: darken($color-list-background, 20%);
+                    &:hover {
+                        background-color: $color-list-background;
+                    }
+                }
+            }
+            &.button-first {
+                border-radius: 0 30px 30px 0;
+            }
+            &.button-last {
+                border-radius: 30px 0 0 30px;
             }
         }
     }

@@ -159,7 +159,7 @@ export default {
 
 ol {
   list-style: none;
-  counter-reset: my-awesome-counter;
+  counter-reset: my-awesome-counter; // counter starts inline
 }
 ol li {
   counter-increment: my-awesome-counter;
