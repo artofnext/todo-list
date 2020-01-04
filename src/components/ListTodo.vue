@@ -37,7 +37,7 @@
         </li>
       </transition-group>
     </draggable>
-    <paginator :pages="pages" :activePage="pageIndex" @go-page="page => pageIndex = page"/>
+    <paginator :pages="pages" v-if="pages - 1" :activePage="pageIndex" @go-page="page => pageIndex = page"/>
   </div>
 </template>
 

@@ -9,7 +9,8 @@
             Prev
         </button>
         <button 
-        name="first" 
+        name="first"
+        v-if="pages > 2"
         @click="pageToGo = 0;"
         :active="activePage == 0"
         class="button-first paginator-button button"
@@ -20,10 +21,10 @@
         <div class="pages-wrapper"
             v-if="pages > 2"
         >
-
+            <!-- Magic numbers purpose is not show 1-st & last pages number buttons -->
             <button 
-            v-for="page in pages - 2" 
-            :key="page + 2"
+            v-for="page in pages - 2"   
+            :key="page"
             @click="pageToGo = page;"
             :active="page == activePage"
             class="button-page paginator-button button"
@@ -34,7 +35,8 @@
         </div>
 
         <button 
-        name="last" 
+        name="last"
+        v-if="pages > 2"
         @click="pageToGo = pages - 1;"
         :active="activePage == pages - 1"
         class="button-last paginator-button button"
@@ -73,7 +75,7 @@ export default {
     },
     watch: {
         pageToGo() {
-            console.log("Go to page " + this.pageToGo);
+            // console.log("Go to page " + this.pageToGo);
             this.$emit('go-page', this.pageToGo);
         },
     },
@@ -91,15 +93,12 @@ export default {
             flex-grow: 1;
             display: flex;
             justify-content: space-evenly;
-            // margin: 0 5px;
-
         }
 
         .button-page {
             width: initial;
             flex-basis: 10%;
             border-radius: 30px;
-
         }
 
         .paginator-button {
@@ -114,10 +113,12 @@ export default {
             &:hover {
                 background-color: darken($color-list-background, 10%);
             }
+
             &[active] {
               background-color: $color-dark-main;
               color: $color-light;
             }
+
             &.button-prev {
                 // border-radius: 0 30px 30px 0;
                 border-radius: 5px 0 0 30px;
@@ -130,6 +131,7 @@ export default {
                     }
                 }
             }
+
             &.button-next {
                 border-radius: 0 5px 30px 0;
                 // border-radius: 30px 0 0 30px;
@@ -142,9 +144,11 @@ export default {
                     }
                 }
             }
+
             &.button-first {
                 border-radius: 0 30px 30px 0;
             }
+
             &.button-last {
                 border-radius: 30px 0 0 30px;
             }

@@ -6,7 +6,10 @@
             <button class="todo-add button" :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add!</button>
         </form>
 
-        <ListTodo :todoArray="todoArray" v-on:changed="refreshLocals()" />
+        <ListTodo 
+        v-if="todoArray.length > 0"
+        :todoArray="todoArray" v-on:changed="refreshLocals()" 
+        />
     </div>
 </template>
 
