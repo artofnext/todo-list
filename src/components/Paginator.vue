@@ -6,7 +6,7 @@
         @click="pageToGo = activePage ? activePage - 1 : 0;" 
         class="button-prev paginator-button button"
         >
-            Prev
+           &lt; Prev
         </button>
         <button 
         name="first"
@@ -49,7 +49,7 @@
         @click="pageToGo = activePage != pages - 1 ? activePage + 1 : pages - 1;" 
         class="button-next paginator-button button"
         >
-            Next
+            Next &gt;
         </button>
     </div>
 </template>
@@ -123,6 +123,7 @@ export default {
                 // border-radius: 0 30px 30px 0;
                 border-radius: 5px 0 0 30px;
                 border-right: 1px solid transparent;
+                flex-grow: 1;
 
                 &[disabled] {
                     color: darken($color-list-background, 20%);
@@ -135,7 +136,7 @@ export default {
             &.button-next {
                 border-radius: 0 5px 30px 0;
                 // border-radius: 30px 0 0 30px;
-                border-left: 1px solid transparent;
+                flex-grow: 1;
 
                 &[disabled] {
                     color: darken($color-list-background, 20%);
@@ -150,6 +151,7 @@ export default {
             }
 
             &.button-last {
+                border-right: 1px solid transparent;
                 border-radius: 30px 0 0 30px;
             }
         }

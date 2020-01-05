@@ -84,7 +84,7 @@ export default {
       setTimeout(function() {
         // for purpose to pass param to callback function
         removeElem(key);
-      }, 50);
+      }, 0);
 
       /**
        * key is the value of id of array todo element
