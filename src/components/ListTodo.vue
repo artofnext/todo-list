@@ -12,8 +12,9 @@
       @state-change=" e => doneFilter = e " 
     />
 
+      <!-- :list="todoArray" -->
     <draggable
-      :list="todoArray"
+      v-model="todoArray"
       tag="ol"
       ghost-class="moving-item"
       filter=".action-button"
