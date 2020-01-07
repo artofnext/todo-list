@@ -13,7 +13,8 @@
     />
 
       <!-- :list="todoArray" -->
-    <draggable
+    <!-- draggable -->
+    <DraggableExtended
       v-model="todoArray"
       tag="ol"
       ghost-class="moving-item"
@@ -37,7 +38,8 @@
           />
         </li>
       </transition-group>
-    </draggable>
+      </DraggableExtended>
+    <!-- </draggable> -->
     <paginator v-if="pages - 1" :pages="pages" :activePage="pageIndex" @go-page="page => pageIndex = page"/>
   </div>
 </template>
@@ -47,7 +49,8 @@ import DoneCheck from "@/components/DoneCheck";
 import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal";
 // import { stringify } from "querystring";
-import Draggable from "vuedraggable";
+// import Draggable from "vuedraggable";
+import DraggableExtended from "@/components/DraggableExtended.vue";
 import RadioButton from "@/components/RadioButton";
 import Paginator from "@/components/Paginator";
 
@@ -74,7 +77,8 @@ export default {
     DoneCheck,
     CloseButton,
     Modal,
-    Draggable,
+    // Draggable,
+    DraggableExtended,
     RadioButton,
     Paginator,
   },
