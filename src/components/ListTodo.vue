@@ -21,6 +21,8 @@
       filter=".action-button"
       :animation="200"
       :style="{ counterReset: 'my-awesome-counter ' + pageIndex * pageSize }"
+
+      :indexOffset="indexOffset"
     >
       <transition-group name="list">
         <li
@@ -69,8 +71,9 @@ export default {
       doneFilter: 0,
       // pagination 
       pageSize: 5,
-      pageIndex: null,
+      pageIndex: 0,
       page: null,
+      // indexOffset: 0,
     };
   },
   components: {
@@ -155,7 +158,12 @@ export default {
     },
     pages() {
       return Math.ceil(this.filteredArray.length / this.pageSize);
-    }
+    },
+
+    indexOffset() {
+      return this.pageIndex * this.pageSize;
+    },
+
   }
 };
 </script>
