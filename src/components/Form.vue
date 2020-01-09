@@ -30,7 +30,11 @@ export default {
     methods: {
         setTodo: function(todo) {
             // Hash function for unique id
-            let hashCode = s => s.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)
+            let hashCode = s => s.split('').reduce(
+                (a,b) => {
+                    a=((a << 5) - a) + b.charCodeAt(0);
+                    return a & a
+                    },0)
 
             let newTodo = {
                 id: Math.abs(hashCode(todo + Math.random())), // Need this for proper vue key in v-for
