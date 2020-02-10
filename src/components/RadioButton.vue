@@ -9,7 +9,7 @@
             <box-number :value="statistic[1]"/>
           </button>
       <button :active="activeIndex == 2"  @click="index = 2" class="filter-button button">
-          Not Done
+          Left
             <box-number :value="statistic[2]"/>
           </button>
     </div>

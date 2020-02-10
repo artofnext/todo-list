@@ -200,7 +200,7 @@ ol li::before {
 
 ol {
   margin: 0 auto;
-  max-width: $list-width;
+  // max-width: $list-width;
   width: 100%;
   text-align: left;
   font-size: 20px;
@@ -251,7 +251,19 @@ ol {
     .todo-item {
       margin: 0;
       display: inline-block;
-      width: $list-width - 104;
+      width: $list-width - 30%;
+      @include sm {
+        width: $list-width - 25%;
+      }
+      @include md {
+        width: $list-width - 20%;
+      }
+      @include lg {
+        width: $list-width - 15%;
+      }
+      @include xl {
+        width: $list-width - 10%;
+      }
     }
   }
 }

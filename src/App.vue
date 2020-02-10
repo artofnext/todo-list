@@ -36,5 +36,19 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $color-dark-main;
+    width: $list-width;
+  @include sm {
+    width: 560px;
+}
+@include md {
+    width: 750px;
+}
+@include lg {
+    width: 900px;
+}
+@include xl {
+    width: 1100px;
+}
+  margin: 20px auto;
 }
 </style>
