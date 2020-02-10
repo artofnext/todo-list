@@ -40,7 +40,7 @@
       </transition-group>
       </DraggableExtended>
     <!-- </draggable> -->
-    <paginator v-if="pages - 1" :pages="pages" :activePage="pageIndex" @go-page="page => pageIndex = page"/>
+    <paginator v-if="(pages - 1) > 0" :pages="pages" :activePage="pageIndex" @go-page="page => pageIndex = page"/>
   </div>
 </template>
 
@@ -129,9 +129,9 @@ export default {
         }
       }
 
-      if (result == this.todoArray.length) {
-        result = "all";
-      }
+      // if (result == this.todoArray.length) {
+      //   result = "all";
+      // }
 
       if (this.todoArray.length == 0) {
         result = false;
