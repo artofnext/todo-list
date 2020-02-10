@@ -41,9 +41,10 @@ export default {
     .modal {
         position: fixed;
         top: 0;
+        left: 0;
         background-color: rgba($color: $color-list-background, $alpha: .5);
         width: 100vw;
-        height: 100vh;
+        height: 75vh;
         z-index: 10;
         // filter: blur(5px);
         backdrop-filter: blur(2px);
