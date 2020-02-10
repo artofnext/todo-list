@@ -9,33 +9,6 @@ $screen-lg-min: 992px;
 
 // Large tablets and desktops
 $screen-xl-min: 1200px;
-// Small devices
-@mixin sm {
-    @media (min-width: #{$screen-sm-min}) {
-        @content;
-    }
- }
- 
- // Medium devices
- @mixin md {
-    @media (min-width: #{$screen-md-min}) {
-        @content;
-    }
- }
- 
- // Large devices
- @mixin lg {
-    @media (min-width: #{$screen-lg-min}) {
-        @content;
-    }
- }
- 
- // Extra large devices
- @mixin xl {
-    @media (min-width: #{$screen-xl-min}) {
-        @content;
-    }
- }
 
 $color-dark-main: #008383;
 $test-color: cyan;
@@ -45,18 +18,4 @@ $color-light: #fff;
 $color-alert: #f00;
 
 $list-width: 100%;
-
-@include sm {
-    $list-width: 560px;
-}
-@include md {
-    $list-width: 750px;
-}
-@include lg {
-    $list-width: 900px;
-}
-@include xl {
-    $list-width: 1100px;
-}
-
 

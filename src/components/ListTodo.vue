@@ -68,7 +68,7 @@ export default {
       // 0 - show all, 1 - only done, 2 - only not done
       doneFilter: 0,
       // pagination 
-      pageSize: 5,
+      pageSize: 10,
       pageIndex: null,
       page: null,
     };
