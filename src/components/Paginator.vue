@@ -93,7 +93,7 @@ export default {
         .sm-hide {
             display: none;
             @include sm {
-                display: initial;
+                display: inline-block;
             }
         }
 
