@@ -6,7 +6,7 @@
         @click="pageToGo = activePage ? activePage - 1 : 0;" 
         class="button-prev paginator-button button"
         >
-           &lt; Prev
+           &lt; <span class="sm-hide">Prev</span>
         </button>
         <button 
         name="first"
@@ -15,7 +15,8 @@
         :active="activePage == 0"
         class="button-first paginator-button button"
         >
-            First
+            <span class="sm-hide">First</span>
+            <span class="sm-show">1</span>
         </button>
 
         <div class="pages-wrapper"
@@ -41,7 +42,7 @@
         :active="activePage == pages - 1"
         class="button-last paginator-button button"
         >
-            Last ({{ pages }})
+            <span class="sm-hide">Last (</span>{{ pages }}<span class="sm-hide">)</span>
         </button>
         <button 
         name="next" 
@@ -49,7 +50,7 @@
         @click="pageToGo = activePage != pages - 1 ? activePage + 1 : pages - 1;" 
         class="button-next paginator-button button"
         >
-            Next &gt;
+            <span class="sm-hide">Next</span> &gt;
         </button>
     </div>
 </template>
@@ -88,6 +89,19 @@ export default {
         margin: 10px auto 20px;
         display: flex;
         justify-content: space-between;
+
+        .sm-hide {
+            display: none;
+            @include sm {
+                display: initial;
+            }
+        }
+
+        .sm-show {
+            @include sm {
+                display: none;
+            }
+        }
 
         .pages-wrapper {
             flex-grow: 1;

@@ -4,7 +4,7 @@
       v-model="modalOpen"
       :modalKey="modalKey"
       v-on:confirmed="removeTodo(modalKey)"
-      modal-title="Delete todo # "
+      modal-title="Delete todo?"
     />
     <radio-button 
       :activeIndex="doneFilter" 
@@ -77,7 +77,6 @@ export default {
     DoneCheck,
     CloseButton,
     Modal,
-    // Draggable,
     DraggableExtended,
     RadioButton,
     Paginator,
@@ -251,9 +250,9 @@ ol {
     .todo-item {
       margin: 0;
       display: inline-block;
-      width: $list-width - 30%;
+      width: $list-width - 40%;
       @include sm {
-        width: $list-width - 25%;
+        width: $list-width - 20%;
       }
       @include md {
         width: $list-width - 20%;

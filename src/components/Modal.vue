@@ -1,7 +1,7 @@
 <template>
     <div class="modal" v-show="value"  v-on:click="closeModal()" >
         <div class="modal__container" v-on:click.stop>
-            <h2 class="modal__title">{{ modalTitle + (modalKey + 1) }}</h2>
+            <h2 class="modal__title">{{ modalTitle }}</h2>
             <CloseButton class="modal-close" v-on:click.native="closeModal()" />
             <button class="ok-button button" v-on:click="confirmAction">OK</button>
         </div>
@@ -77,6 +77,7 @@ export default {
 
     .ok-button {
         border-radius: 30px;
+        width: 30%;
         color: $color-dark-main;
     }
 </style>

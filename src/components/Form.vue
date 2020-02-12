@@ -1,9 +1,13 @@
 <template>
     <div class="form-container">
+        <Modal 
+            v-model="modalOpen" 
+            modal-title="Can't add empty task!"
+            v-on:confirmed="closeModal()"
+        />
         <form class="todo-form" name="todo">
-            <!-- <h2>{{ todo }}</h2> -->
             <input class="todo-input" v-model="todo" type="text" placeholder="Type todo here...">
-            <button class="todo-add button" :disabled="!todo" v-on:click.prevent="setTodo(todo)" type="submit">Add</button>
+            <button class="todo-add button" :disabled="!todo" v-on:click.prevent="setTodo()" type="submit">Add</button>
         </form>
 
         <ListTodo 
@@ -15,6 +19,7 @@
 
 <script>
 import ListTodo from '@/components/ListTodo';
+import Modal from "@/components/Modal";
 
 export default {
     name: 'Form',
@@ -22,14 +27,22 @@ export default {
         return {
             todo: "",
             todoArray: [],
+            modalOpen: false,
+            // modalKey: null,
         }
     },
     components: {
         ListTodo,
+        Modal,
     },
     methods: {
-        setTodo: function(todo) {
+        setTodo: function() {
             // Hash function for unique id
+            this.todo = this.todo.trim();
+            if (this.todo == "") {
+                this.openModal();
+                return;
+            }
             let hashCode = s => s.split('').reduce(
                 (a,b) => {
                     a=((a << 5) - a) + b.charCodeAt(0);
@@ -37,8 +50,8 @@ export default {
                     },0)
 
             let newTodo = {
-                id: Math.abs(hashCode(todo + Math.random())), // Need this for proper vue key in v-for
-                todo,
+                id: Math.abs(hashCode(this.todo + Math.random())), // Need this for proper vue key in v-for
+                todo: this.todo,
                 done: false,
             };
             this.todoArray.push(newTodo);
@@ -46,8 +59,16 @@ export default {
         },
 
         refreshLocals: function () {        // refresh todoArray in Local Storage
-            console.log('todoArray: web storage refreshed');
+            // console.log('todoArray: web storage refreshed');
             this.$localStorage.set('todo', this.todoArray);
+        },
+
+        openModal() {
+            this.modalOpen = !this.modalOpen;
+        },
+
+        closeModal() {
+            this.modalOpen = false;
         }
         
     },
@@ -66,8 +87,6 @@ export default {
 </script>
 
 <style lang="scss">
-    // $color-dark-main: #2c3e50;
-    // $color-list-background: #ddd;
     .todo-input {
         font-size: 20px;
         line-height: 25px;
