@@ -38,8 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    // $color-dark-main: #2c3e50;
-    // $color-list-background: #ddd;
 
     .outer {
         position: relative;
@@ -61,7 +59,6 @@ export default {
         }
 
         &.checked {
-            // background-color: lighten($color-dark-main, 10%);
             background-color: $color-dark-main;
         }
 
@@ -82,15 +79,13 @@ export default {
         width: 20px;
         border-radius: 50%;
         box-sizing: border-box;
-        // border: 1px solid white;
+
         border: 1px solid $color-dark-main;
         background-color: $color-light;
         left: 0;
         transition: all .3s ease-in-out;
         
         &.checked {
-            // background-color: $color-list-background;
-        // transition: all .5s ease-in-out;
             left: 20px;
         }
         
