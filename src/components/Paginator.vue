@@ -111,7 +111,7 @@ export default {
 
         .button-page {
             width: initial;
-            flex-basis: 10%;
+            flex-basis: 40%;
             border-radius: 30px;
         }
 

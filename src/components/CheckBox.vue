@@ -1,4 +1,6 @@
 <template>
+    <div>
+        <slot></slot>
     <div 
     class="outer" 
     :class="{ checked: checked, disabled: disabled }"
@@ -8,6 +10,7 @@
         class="inner"
         :class="{ checked: checked, disabled: disabled }"
         ></div>
+    </div>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-    <div :class="{ checked: checked }">
-
+    <div class="tooltip" :class="{ checked: checked }">
+        <span class="tooltiptext">Done</span>
     </div>
 </template>
 
@@ -15,8 +15,39 @@ export default {
 
 <style lang="scss" scoped>
 
-    // $color-list-background: #ddd;
-    // $color-dark-main: #2c3e50;
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 80px;
+        background-color: $color-dark-main;
+        color: #fff;
+        text-align: center;
+        border-radius: 30px 10px 10px 30px;
+        // padding: 5px 0;
+        position: absolute;
+        z-index: 10;
+        top: -46%;
+        right: 170%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 18%;
+        left: 105%;
+        margin-left: -5px;
+        border-width: 10px;
+        border-style: solid;
+        border-color:  transparent transparent transparent $color-dark-main;
+        // border-color: $color-dark-main;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
 
     div {
             &:hover {
@@ -30,11 +61,11 @@ export default {
         margin: 7px;
 
         & .checked {
-        position: relative;
+            position: relative;
             display: inline-block;
             width: 15px;
             height: 15px;
-            overflow: hidden;
+            // overflow: hidden;
 
             &::before, &::after {
               content: '';
@@ -69,6 +100,7 @@ export default {
                     margin-top: -4px;
                 }
            
-         } }
+            } 
+        }
     }
 </style>

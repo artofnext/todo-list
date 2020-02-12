@@ -35,7 +35,8 @@
             :key="key"
             v-on:click.stop.native="checkDone(value.id)"
             :checked="value.done"
-          />
+          >
+          </DoneCheck>
         </li>
       </transition-group>
       </DraggableExtended>
