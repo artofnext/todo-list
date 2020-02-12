@@ -69,7 +69,7 @@ export default {
       doneFilter: 0,
       // pagination 
       pageSize: 10,
-      pageIndex: null,
+      pageIndex: 0,
       page: null,
     };
   },
